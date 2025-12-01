@@ -9,5 +9,12 @@ public class Main {
 
         System.out.println("Original List:");
         System.out.println(list.toStringVertical());
+        
+
+        for (Integer value : list) {
+            System.out.println("Value: " + value);
         }
+
+    
     }
+}

@@ -1,6 +1,6 @@
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-
+import java.util.Iterator;
 /**
  * This `ListImpl` class implements the linked list functionality using content node and empty node.
  * It attempts to maintain abstraction so that this implementation could be used for any generic object.
@@ -75,34 +75,34 @@ public class ListImpl<T> implements Iterable<T> {
         return new ListIterator<T>(this);
     }
     
-    class ListIterator<T> implements Iterator<T> {
-    Node<T> current;
+    class ListIterator<U> implements Iterator<U> {
+    Node<U> current;
     
-    // initialize pointer to head of the list for iteration
-    public ListIterator(List<T> list)
-    {
-        current = list.getHead();
+        // initialize pointer to head of the list for iteration
+        public ListIterator(ListImpl<U> list)
+        {
+            current = list.getHead();
+        }
+        
+        // returns false if next element does not exist
+        public boolean hasNext()
+        {
+            return current.getData() != null;
+        }
+        
+        // return current data and update pointer
+        public U next()
+        {
+            U data = current.getData();
+            current = current.getNext();
+            return data;
+        }
+        
+        // implement if needed
+        public void remove()
+        {
+            throw new UnsupportedOperationException();
+        }
     }
-    
-    // returns false if next element does not exist
-    public boolean hasNext()
-    {
-        return current != null;
-    }
-    
-    // return current data and update pointer
-    public T next()
-    {
-        T data = current.getData();
-        current = current.getNext();
-        return data;
-    }
-    
-    // implement if needed
-    public void remove()
-    {
-        throw new UnsupportedOperationException();
-    }
-}
     
 }
