@@ -69,6 +69,20 @@ public class ListImpl<T> implements Iterable<T> {
         return this.head;
     }
 
+    public ListImpl<T> filter(Node<T> head, Predicate<T> test){
+        ListImpl<T> filteredList = new ListImpl<>();
+        
+        if (head.getData() == null){
+            return filteredList;
+        } else if (test.test(this.head.getData())) {
+            filteredList.addNode(this.head.getData());
+            return this.filter(this.head.getNext(), test);
+        }
+        else {
+            return this.filter(this.head.getNext(), test);
+        }
+    }
+
         // return Iterator instance
     public Iterator<T> iterator()
     {
