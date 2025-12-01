@@ -10,7 +10,7 @@ import java.util.function.Predicate;
  * @since 2025-11-26
  */
 
-import org.w3c.dom.Node;
+
 public interface Node<T>{
     //returns the number of nodes in a list
     int count();
