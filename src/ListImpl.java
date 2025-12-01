@@ -1,6 +1,9 @@
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 /**
  * This `ListImpl` class implements the linked list functionality using content node and empty node.
  * It attempts to maintain abstraction so that this implementation could be used for any generic object.
@@ -69,19 +72,33 @@ public class ListImpl<T> implements Iterable<T> {
         return this.head;
     }
 
-    public ListImpl<T> filter(Node<T> head, Predicate<T> test){
+    public ListImpl<T> filter(Predicate<T> test){
         ListImpl<T> filteredList = new ListImpl<>();
         
-        if (head.getData() == null){
-            return filteredList;
-        } else if (test.test(this.head.getData())) {
-            filteredList.addNode(this.head.getData());
-            return this.filter(this.head.getNext(), test);
+        for (T item : this) {
+            if (test.test(item)) {
+                filteredList.addNode(item);
+            }
         }
-        else {
-            return this.filter(this.head.getNext(), test);
-        }
+        return filteredList;
     }
+
+    /**
+    * Apply a function to every element of a list.
+     * @param f function to apply
+     * @param list list to iterate over
+    * @return [f(list[0]), f(list[1]), ..., f(list[n-1])]
+    */
+    public <R> ListImpl<R> map(Function<T,R> f) {
+        ListImpl<R> result = new ListImpl<>();
+
+        for (T t : this) {
+            result.addNode(f.apply(t));
+        }
+        return result;
+    }
+
+
 
         // return Iterator instance
     public Iterator<T> iterator()

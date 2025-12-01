@@ -3,6 +3,7 @@ public class Main {
     public static void main(String[] args) {
         ListImpl<Integer> list = new ListImpl<>();
         ListImpl<Integer> filteredlist;
+        ListImpl<Integer> mappedlist;
 
         list.addNode(5);
         list.addNode(10);
@@ -16,9 +17,12 @@ public class Main {
             System.out.println("Value: " + value);
         }
 
-        filteredlist = list.filter(list.getHead(), value -> value > 7);
+        filteredlist = list.filter(value -> value > 7);
         System.out.println("\nFiltered List (values > 7):");
         System.out.println(filteredlist.toStringVertical());
 
+        mappedlist = list.map(value -> value * 2);
+        System.out.println("\nMapped List (values * 2):");
+        System.out.println(mappedlist.toStringVertical());
     }
 }
