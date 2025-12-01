@@ -1,9 +1,11 @@
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 /**
  * This `ListImpl` class implements the linked list functionality using content node and empty node.
  * It attempts to maintain abstraction so that this implementation could be used for any generic object.
@@ -85,8 +87,10 @@ public class ListImpl<T> implements Iterable<T> {
 
     /**
     * Apply a function to every element of a list.
-     * @param f function to apply
-     * @param list list to iterate over
+    * Adapted to my project from a MIT opencourse example. 
+    * https://web.mit.edu/6.005/www/fa14/classes/24-map-filter-reduce/
+    * @param f function to apply
+    * @param list list to iterate over
     * @return [f(list[0]), f(list[1]), ..., f(list[n-1])]
     */
     public <R> ListImpl<R> map(Function<T,R> f) {
@@ -98,9 +102,22 @@ public class ListImpl<T> implements Iterable<T> {
         return result;
     }
 
+    /* Example snippet for fold operation in Java taken and adapted from:
+    * https://codingtechroom.com/question/how-to-implement-list-fold-in-java#google_vignette
+    * @param list List to fold
+    * @param initial Initial value
+    * @param folder Folding function
+    * @return Result of folding operation
+    */
+    public <R> R fold(R initial, BiFunction<R, T, R> folder) {
+        R result = initial;
+        for (T item : this) {
+            result = folder.apply(result, item);
+        }
+        return result;
+    }
 
-
-        // return Iterator instance
+    // return Iterator instance
     public Iterator<T> iterator()
     {
         return new ListIterator<T>(this);

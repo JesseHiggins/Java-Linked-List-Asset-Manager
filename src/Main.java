@@ -4,6 +4,7 @@ public class Main {
         ListImpl<Integer> list = new ListImpl<>();
         ListImpl<Integer> filteredlist;
         ListImpl<Integer> mappedlist;
+        Integer foldedlistresult;
 
         list.addNode(5);
         list.addNode(10);
@@ -24,5 +25,9 @@ public class Main {
         mappedlist = list.map(value -> value * 2);
         System.out.println("\nMapped List (values * 2):");
         System.out.println(mappedlist.toStringVertical());
+
+        foldedlistresult = list.fold(0, (acc, value) -> acc + value);
+        System.out.println("\nFolded List (sum of values):");
+        System.out.println(foldedlistresult);
     }
 }
