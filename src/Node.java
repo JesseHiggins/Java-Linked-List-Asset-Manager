@@ -9,6 +9,8 @@ import java.util.function.Predicate;
  * @version 1.0
  * @since 2025-11-26
  */
+
+import org.w3c.dom.Node;
 public interface Node<T>{
     //returns the number of nodes in a list
     int count();
@@ -35,5 +37,7 @@ public interface Node<T>{
     String toStringPredicate(Predicate<T> predicate);
 
     String toStringVertical();
+
+    Node<T> getNext();
 
 }

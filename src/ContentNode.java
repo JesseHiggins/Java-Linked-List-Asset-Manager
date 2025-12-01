@@ -27,6 +27,10 @@ public class ContentNode<T> implements Node<T>{
         this.data = data;
     }
 
+    public Node<T> getNext(){
+        return this.nextNode;
+    }
+
     /**
      * Returns data from node.
      *

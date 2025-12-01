@@ -11,7 +11,7 @@ import java.util.function.Predicate;
  * @version 1.0
  * @since 2025-11-26
  */
-public class ListImpl<T>{
+public class ListImpl<T> implements Iterable<T> {
     private Node<T> head;
     
     public ListImpl(){
@@ -64,5 +64,45 @@ public class ListImpl<T>{
     public void modifyNode(int index, Consumer<T> modifier) {
         head.modifyNode(index, modifier);
     }
+
+    public Node<T> getHead() {
+        return this.head;
+    }
+
+        // return Iterator instance
+    public Iterator<T> iterator()
+    {
+        return new ListIterator<T>(this);
+    }
+    
+    class ListIterator<T> implements Iterator<T> {
+    Node<T> current;
+    
+    // initialize pointer to head of the list for iteration
+    public ListIterator(List<T> list)
+    {
+        current = list.getHead();
+    }
+    
+    // returns false if next element does not exist
+    public boolean hasNext()
+    {
+        return current != null;
+    }
+    
+    // return current data and update pointer
+    public T next()
+    {
+        T data = current.getData();
+        current = current.getNext();
+        return data;
+    }
+    
+    // implement if needed
+    public void remove()
+    {
+        throw new UnsupportedOperationException();
+    }
+}
     
 }

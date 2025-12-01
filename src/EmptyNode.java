@@ -46,5 +46,9 @@ public class EmptyNode<T> implements Node<T>{
     public String toStringPredicate(Predicate<T> predicate){ return ""; }
 
     public void modifyNode(int index, Consumer<T> modifier){}
+
+    public Node<T> getNext(){
+        return null;
+    }
     
 }

@@ -21,63 +21,63 @@ public class AssetListModel {
     public void addAsset(Accrueable asset) {
         toDoList.addNode(asset);
     }
-
-    public void removeTaskId(int id) {toDoList.removeNodePredicate(task -> task.getId() == id);}
-
-    public void removeTask(int index) {
-        toDoList.removeNode(index);
-    }
-
-    public void removeAllTasks() {
-        toDoList.removeAllNodes();
-    }
-
-    public void changeDate(int index, Date date) {
-        toDoList.modifyNode(index, task -> task.setDate(date));
-    }
-
-    public void changePriority(int index, Priority priority) {
-        toDoList.modifyNode(index, task -> task.setPriority(priority));
-    }
-
-    public void setCompleted(int index, boolean completed) {
-        toDoList.modifyNode(index, task -> task.setCompleted(completed));
-    }
-
-    public int countTasks() {
-        return toDoList.count();
-    }
-
-    public int countCompletedTasks() {
-        return toDoList.countPredicate(task -> task.isCompleted().equals(true));
-    }
-
-    public int countExpiredTasks() {
-        return toDoList.countPredicate(task -> task.isExpired().equals(true));
-    }
-
-
-   public String toStringPriority(Priority priority) {
-       return toDoList.toStringPredicate(task -> task.getPriority().equals(priority));
-   }
-
-   public String toStringExpiredTasks() {
-       return toDoList.toStringPredicate(task -> task.isExpired().equals(true));
-   }
-
-   public void removeCompletedTasks() {
-       toDoList.removeNodePredicate(task -> task.isCompleted().equals(true));
-   }
-
-   public void removeExpiredTasks() {
-        toDoList.removeNodePredicate(task -> task.isExpired().equals(true));
-   }
-
-   public void removePriorityTasks(Priority priority) {
-        toDoList.removeNodePredicate(task -> task.getPriority().equals(priority));
-   }
-
-   public String toString() {
-        return toDoList.toStringVertical();
-   }
 }
+//     public void removeTaskId(int id) {toDoList.removeNodePredicate(task -> task.getId() == id);}
+
+//     public void removeTask(int index) {
+//         toDoList.removeNode(index);
+//     }
+
+//     public void removeAllTasks() {
+//         toDoList.removeAllNodes();
+//     }
+
+//     public void changeDate(int index, Date date) {
+//         toDoList.modifyNode(index, task -> task.setDate(date));
+//     }
+
+//     public void changePriority(int index, Priority priority) {
+//         toDoList.modifyNode(index, task -> task.setPriority(priority));
+//     }
+
+//     public void setCompleted(int index, boolean completed) {
+//         toDoList.modifyNode(index, task -> task.setCompleted(completed));
+//     }
+
+//     public int countTasks() {
+//         return toDoList.count();
+//     }
+
+//     public int countCompletedTasks() {
+//         return toDoList.countPredicate(task -> task.isCompleted().equals(true));
+//     }
+
+//     public int countExpiredTasks() {
+//         return toDoList.countPredicate(task -> task.isExpired().equals(true));
+//     }
+
+
+//    public String toStringPriority(Priority priority) {
+//        return toDoList.toStringPredicate(task -> task.getPriority().equals(priority));
+//    }
+
+//    public String toStringExpiredTasks() {
+//        return toDoList.toStringPredicate(task -> task.isExpired().equals(true));
+//    }
+
+//    public void removeCompletedTasks() {
+//        toDoList.removeNodePredicate(task -> task.isCompleted().equals(true));
+//    }
+
+//    public void removeExpiredTasks() {
+//         toDoList.removeNodePredicate(task -> task.isExpired().equals(true));
+//    }
+
+//    public void removePriorityTasks(Priority priority) {
+//         toDoList.removeNodePredicate(task -> task.getPriority().equals(priority));
+//    }
+
+//    public String toString() {
+//         return toDoList.toStringVertical();
+//    }
+// }
