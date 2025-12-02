@@ -19,10 +19,10 @@ public class AssetListModel {
     }
 
     public void addAsset(Accrueable asset) {
-        toDoList.addNode(asset);
+        toDoList.addNodeAtEnd(asset);
     }
 }
-//     public void removeTaskId(int id) {toDoList.removeNodePredicate(task -> task.getId() == id);}
+    // public void removeTaskId(int id) {toDoList.removeNodePredicate(task -> task.getId() == id);}
 
 //     public void removeTask(int index) {
 //         toDoList.removeNode(index);
