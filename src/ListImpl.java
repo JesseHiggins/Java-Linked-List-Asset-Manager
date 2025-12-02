@@ -73,7 +73,12 @@ public class ListImpl<T> implements Iterable<T> {
     public Node<T> getHead() {
         return this.head;
     }
-
+    
+    /**
+     * Filter elements of a list based on a predicate.
+     * @param test predicate to test elements
+     * @return list of elements that satisfy the predicate
+     */
     public ListImpl<T> filter(Predicate<T> test){
         ListImpl<T> filteredList = new ListImpl<>();
         
