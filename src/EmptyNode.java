@@ -20,6 +20,8 @@ public class EmptyNode<T> implements Node<T>{
     public int countPredicate(Predicate<T> predicate){ return 0; }
     
     public T getData(){return null;}
+
+    public void setNext(Node<T> nextNode){}
     
     public Node<T> getContent(int index){
         return null;

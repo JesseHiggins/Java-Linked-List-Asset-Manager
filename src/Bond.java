@@ -3,14 +3,14 @@ public class Bond extends Asset {
     double faceValue;
     double maturity;
     double price;
-    double yieldtomaturity;
+    double ytm;
 
     public Bond(String name, double value, double rate, double period, double principal, double age, double coupon, double faceValue, double maturity) {
         super(name, value, assetType.BOND, rate, period, principal, age);
         this.coupon = coupon;
         this.faceValue = faceValue;
         this.maturity = maturity;
-        this.yieldtomaturity = getYieldToMaturity();
+        this.ytm = getYieldToMaturity();
         this.price = getCurrentPrice();
     }
 

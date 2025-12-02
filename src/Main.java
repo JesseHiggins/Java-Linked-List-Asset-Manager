@@ -6,9 +6,9 @@ public class Main {
         ListImpl<Integer> mappedlist;
         Integer foldedlistresult;
 
-        list.addNode(5);
-        list.addNode(10);
-        list.addNode(15);
+        list.addNodeAtEnd(5);
+        list.addNodeAtEnd(10);
+        list.addNodeAtEnd(15);
 
         System.out.println("Original List:");
         System.out.println(list.toStringVertical());

@@ -2,9 +2,7 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * This `ListImpl` class implements the linked list functionality using content node and empty node.
@@ -27,6 +25,19 @@ public class ListImpl<T> implements Iterable<T> {
         
        head = new ContentNode<>(head,data);
         
+    }
+
+    public void addNodeAtEnd(T data){
+        if (head.getData() == null){
+            head = new ContentNode<>(head, data);
+        } else {
+            Node<T> current = head;
+            while (current.getNext().getData() != null){
+                current = current.getNext();
+            }
+            Node<T> newNode = new ContentNode<>(current.getNext(), data);
+            current.setNext(newNode);
+        }
     }
 
     public void removeAllNodes() {
@@ -84,7 +95,7 @@ public class ListImpl<T> implements Iterable<T> {
         
         for (T item : this) {
             if (test.test(item)) {
-                filteredList.addNode(item);
+                filteredList.addNodeAtEnd(item);
             }
         }
         return filteredList;
@@ -102,7 +113,7 @@ public class ListImpl<T> implements Iterable<T> {
         ListImpl<R> result = new ListImpl<>();
 
         for (T t : this) {
-            result.addNode(f.apply(t));
+            result.addNodeAtEnd(f.apply(t));
         }
         return result;
     }

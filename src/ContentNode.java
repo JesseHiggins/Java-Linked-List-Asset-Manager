@@ -31,6 +31,10 @@ public class ContentNode<T> implements Node<T>{
         return this.nextNode;
     }
 
+    public void setNext(Node<T> nextNode){
+        this.nextNode = nextNode;
+    }
+
     /**
      * Returns data from node.
      *

@@ -22,6 +22,8 @@ public interface Node<T>{
 
     T getData();
 
+    void setNext(Node<T> nextNode);
+
     Node<T> filter(Predicate<T> test);
 
     Node<T> removeAllNodes();
