@@ -3,7 +3,7 @@ public class Stock extends Asset {
     double shares;
 
     public Stock(String name, double value, double rate, double period, double principal, double age, double price) {
-        super(name, value, assetType.STOCK, rate, period, principal, age);
+        super(name, value, assetType.STOCK, rate, period, principal);
         this.price = price;
         this.shares = principal / price;
     }

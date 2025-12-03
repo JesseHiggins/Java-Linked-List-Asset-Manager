@@ -1,6 +1,6 @@
 public class Cash extends Asset {
     public Cash(String name, double value, double rate, double period, double principal, double age) {
-        super(name, value, assetType.CASH, rate, period, principal, age);
+        super(name, value, assetType.CASH, rate, period, principal);
     }
 
     @Override

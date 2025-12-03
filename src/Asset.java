@@ -5,17 +5,15 @@ public abstract class Asset implements Accrueable {
     protected double rate;
     protected double period;
     protected double principal;
-    protected double age;
 
 
-    public Asset(String name, double value, assetType type, double rate, double period, double principal, double age) {
+    public Asset(String name, double value, assetType type, double rate, double period, double principal) {
         this.name = name;
         this.value = value;
         this.type = type;
         this.rate = rate;
         this.period = period;
         this.principal = principal;
-        this.age = age;
 
     }
 
@@ -41,10 +39,6 @@ public abstract class Asset implements Accrueable {
 
     public double getPrincipal() {
         return principal;
-    }
-
-    public double getAge() {
-        return age;
     }
 
 
