@@ -1,0 +1,130 @@
+public class AssetListController {
+    private final AssetListModel model;
+    private final AssetListView view;
+
+    public AssetListController(AssetListModel model, AssetListView view) {
+        if (model == null || view == null) {
+            throw new IllegalArgumentException("Model and View cannot be null");
+        }
+        this.model = model;
+        this.view = view;
+    }
+
+    public void start() {
+        view.append("Welcome to the Asset Management System!\n");
+        while (true) {
+            updateView();
+            String choice = view.getInput("Choose an option:\n" +
+                    "1. Add Asset\n" +
+                    "2. Remove Asset\n" +
+                    "3. Accrue All Assets\n" +
+                    "4. Change Asset Periods\n" +
+                    "5. Exit\n" +
+                    "Enter choice (1-5): ");
+
+            switch (choice) {
+                case "1":
+                    promptAddAsset();
+                    break;
+                case "2":
+                    int indexToRemove = Integer.parseInt(view.getInput("Enter index of asset to remove: "));
+                    removeAsset(indexToRemove);
+                    view.append("Asset removed successfully.\n");
+                    break;
+                case "3":
+                    accrueAllAssets();
+                    view.append("All assets accrued successfully.\n");
+                    break;
+                case "4":
+                    double newPeriod = Double.parseDouble(view.getInput("Enter new period for all assets: "));
+                    changeAssetPeriods(newPeriod);
+                    view.append("Asset periods updated successfully.\n");
+                    break;
+                case "5":
+                    view.append("Exiting the Asset Management System. Goodbye!\n");
+                    return;
+                default:
+                    view.append("Invalid choice. Please try again.\n");
+            }
+        }
+    }
+
+    public void addAsset(Asset asset) {
+        model.addAsset(asset);
+    }
+
+    public void removeAsset(int index) {
+        model.removeAsset(index);
+    }
+
+    public void accrueAllAssets() {
+        model.accrueAllAssets();
+    }
+
+    public void changeAssetPeriods(double newPeriod) {
+        model.changeAssetPeriods(newPeriod);
+    }
+
+    public void updateView() {
+        view.append("Current Assets:\n");
+        view.append(model.toString());
+    }
+
+    public void promptAddAsset() {
+        view.append("What type of asset would you like to add?\n");
+        view.append("1. Stock\n");
+        view.append("2. Cash\n");
+        view.append("3. Bond\n");
+
+        String choice = view.getInput("Enter choice (1-3): ");
+        switch (choice) {
+            case "1":
+                promptAddStock();
+                break;
+            case "2":
+                promptAddCash();
+                break;
+            case "3":
+                promptAddBond();
+                break;
+            default:
+                view.append("Invalid choice. Please try again.\n");
+        }
+
+    }
+    private void promptAddStock() { 
+        String name = view.getInput("Enter asset name: ");
+        double rate = Double.parseDouble(view.getInput("Enter interest rate (%): "));
+        double period = Double.parseDouble(view.getInput("Enter period (years): "));
+        double principal = Double.parseDouble(view.getInput("Enter principal amount: "));
+        double price = Double.parseDouble(view.getInput("Enter stock price: "));
+
+        Asset newAsset = new Stock(name, rate, period, principal, price);
+        addAsset(newAsset);
+        view.append("Stock added successfully.\n");
+    }
+
+    private void promptAddCash() {
+        String name = view.getInput("Enter asset name: ");
+        double rate = Double.parseDouble(view.getInput("Enter interest rate (%): "));
+        double period = Double.parseDouble(view.getInput("Enter period (years): "));
+        double principal = Double.parseDouble(view.getInput("Enter principal amount: "));
+
+        Asset newAsset = new Cash(name, rate, period, principal, 0);
+        addAsset(newAsset);
+        view.append("Cash asset added successfully.\n");
+    }
+
+    private void promptAddBond() {
+        String name = view.getInput("Enter asset name: ");
+        double rate = Double.parseDouble(view.getInput("Enter interest rate (%): "));
+        double period = Double.parseDouble(view.getInput("Enter period (years): "));
+        double principal = Double.parseDouble(view.getInput("Enter principal amount: "));
+        double faceValue = Double.parseDouble(view.getInput("Enter face value: "));
+        double maturity = Double.parseDouble(view.getInput("Enter maturity (years): "));
+
+        Asset newAsset = new Bond(name, rate, period, principal, faceValue, maturity);
+        addAsset(newAsset);
+        view.append("Bond added successfully.\n");
+    }
+}

@@ -1,11 +1,23 @@
 public class Cash extends Asset {
-    public Cash(String name, double value, double rate, double period, double principal, double age) {
-        super(name, value, assetType.CASH, rate, period, principal);
+    public Cash(String name, double rate, double period, double principal, double age) {
+        super(name, assetType.CASH, rate, period, principal);
     }
 
     @Override
-    public double accrue() {
-        return principal * Math.pow((1 + rate / 100), period) - principal;
+    public void accrue() {
+        this.value = principal * Math.pow((1 + rate / 100), period);
+    }
+
+    @Override
+    public String toString() {
+        return Cash.class.getSimpleName() + " [" +
+                "name=" + name +
+                ", value=" + value +
+                ", type=" + type +
+                ", rate=" + rate +
+                ", period=" + period +
+                ", principal=" + principal +
+                ']';
     }
     
 }

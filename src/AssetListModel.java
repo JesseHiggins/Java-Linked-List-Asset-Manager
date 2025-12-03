@@ -8,20 +8,40 @@
  */
 public class AssetListModel {
 
-    private final ListImpl<Accrueable> toDoList;
+    private ListImpl<Asset> assetList;
 
     public AssetListModel() {
-        this.toDoList = new ListImpl<>();
+        this.assetList = new ListImpl<>();
     }
 
     public Accrueable getAsset(int index) {
-       return toDoList.getContent(index).getData();
+       return assetList.getContent(index).getData();
     }
 
-    public void addAsset(Accrueable asset) {
-        toDoList.addNodeAtEnd(asset);
+    public void addAsset(Asset asset) {
+        assetList.addNodeAtEnd(asset);
     }
-}
+
+    public void removeAsset(int index) {
+        assetList.removeNode(index);
+    }
+
+    public void accrueAllAssets() {
+        for (Accrueable asset : assetList) {
+            asset.accrue();
+        }
+    }
+
+    public void changeAssetPeriods(double newPeriod) {
+        assetList.forEach(asset -> asset.setPeriod(newPeriod));
+    }    
+
+    @Override
+    public String toString() {
+        return assetList.toStringIndex();
+    }
+
+
     // public void removeTaskId(int id) {toDoList.removeNodePredicate(task -> task.getId() == id);}
 
 //     public void removeTask(int index) {
@@ -32,9 +52,9 @@ public class AssetListModel {
 //         toDoList.removeAllNodes();
 //     }
 
-//     public void changeDate(int index, Date date) {
-//         toDoList.modifyNode(index, task -> task.setDate(date));
-//     }
+    public void changePeriod(int index, double period) {
+        assetList.modifyNode(index, asset -> asset.setPeriod(period));
+    }
 
 //     public void changePriority(int index, Priority priority) {
 //         toDoList.modifyNode(index, task -> task.setPriority(priority));
@@ -80,4 +100,4 @@ public class AssetListModel {
 //    public String toString() {
 //         return toDoList.toStringVertical();
 //    }
-// }
+}

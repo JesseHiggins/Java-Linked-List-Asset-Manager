@@ -77,6 +77,16 @@ public class ListImpl<T> implements Iterable<T> {
         return head.toStringVertical();
     }
 
+    public String toStringIndex(){
+        String str = new String();
+        int index = 1;
+        for (T item : this) {
+            str += index + ": " + item.toString() + "\n";
+            index++;
+        }
+        return str;
+    }
+
     public void modifyNode(int index, Consumer<T> modifier) {
         head.modifyNode(index, modifier);
     }

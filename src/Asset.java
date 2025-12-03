@@ -7,9 +7,8 @@ public abstract class Asset implements Accrueable {
     protected double principal;
 
 
-    public Asset(String name, double value, assetType type, double rate, double period, double principal) {
+    public Asset(String name, assetType type, double rate, double period, double principal) {
         this.name = name;
-        this.value = value;
         this.type = type;
         this.rate = rate;
         this.period = period;
@@ -39,6 +38,14 @@ public abstract class Asset implements Accrueable {
 
     public double getPrincipal() {
         return principal;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPeriod(double period) {
+        this.period = period;
     }
 
 
