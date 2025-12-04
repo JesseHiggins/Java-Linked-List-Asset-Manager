@@ -40,7 +40,7 @@ public class Bond extends Asset {
 
     @Override
     public String toString() {
-        return Bond.class.getSimpleName() + " [" +
+        return Bond.class.getSimpleName() + "  [" +
                 "name=" + name +
                 ", value=" + value +
                 ", type=" + type +

@@ -23,6 +23,9 @@ public class AssetListModel {
     }
 
     public void removeAsset(int index) {
+        if (index < 0 || index >= assetList.count()) {
+            throw new IndexOutOfBoundsException("Index out of bounds: " + index + " for asset list of size " + assetList.count());
+        }
         assetList.removeNode(index);
     }
 
@@ -50,6 +53,10 @@ public class AssetListModel {
 
     public void filterAssetsByValue(double minValue, double maxValue) {
         assetList = assetList.filter(asset -> asset.getValue() >= minValue && asset.getValue() <= maxValue);
+    }
+
+    public double getTotalAssetValue() {
+        return assetList.fold(0.0, (acc, asset) -> acc + asset.getValue());
     }
 
     @Override

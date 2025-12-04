@@ -10,7 +10,7 @@ public class Cash extends Asset {
 
     @Override
     public String toString() {
-        return Cash.class.getSimpleName() + " [" +
+        return Cash.class.getSimpleName() + "  [" +
                 "name=" + name +
                 ", value=" + value +
                 ", type=" + type +

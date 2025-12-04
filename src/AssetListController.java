@@ -13,44 +13,49 @@ public class AssetListController {
     public void start() {
         view.append("\n|=======================================|\n");
         view.append("|Welcome to the Asset Management System!|\n");
-        view.append("|=======================================|\n\n");
+        view.append("|=======================================|\n");
         while (true) {
+            accrueAllAssets();
             updateView();
-            String choice = view.getInput("Choose an option:\n" +
-                    "1. Add Asset\n" +
-                    "2. Remove Asset\n" +
-                    "3. Accrue All Assets\n" +
-                    "4. Change Asset Periods\n" +
-                    "5. Filter Assets\n" +
-                    "6. Exit\n" +
-                    "Enter choice (1-6): ");
+            try {
+                String choice = view.getInput("Choose an option:\n" +
+                        "1. Add Asset\n" +
+                        "2. Remove Asset\n" +
+                        "3. Accrue All Assets\n" +
+                        "4. Change Asset Periods\n" +
+                        "5. Filter Assets\n" +
+                        "6. Exit\n" +
+                        "Enter choice (1-6): ");
 
-            switch (choice) {
-                case "1":
-                    promptAddAsset();
-                    break;
-                case "2":
-                    int indexToRemove = Integer.parseInt(view.getInput("Enter index of asset to remove: "));
-                    removeAsset(indexToRemove);
-                    view.append("Asset removed successfully.\n");
-                    break;
-                case "3":
-                    accrueAllAssets();
-                    view.append("All assets accrued successfully.\n");
-                    break;
-                case "4":
-                    double newPeriod = Double.parseDouble(view.getInput("Enter new period for all assets: "));
-                    changeAssetPeriods(newPeriod);
-                    view.append("Asset periods updated successfully.\n");
-                    break;
-                case "5":
-                    promptFilterAssets();
-                    break;
-                case "6":
-                    view.append("Exiting the Asset Management System. Goodbye!\n");
-                    return;
-                default:
-                    view.append("Invalid choice. Please try again.\n");
+                switch (choice) {
+                    case "1":
+                        promptAddAsset();
+                        break;
+                    case "2":
+                        int indexToRemove = Integer.parseInt(view.getInput("Enter index of asset to remove: "));
+                        removeAsset(indexToRemove);
+                        view.append("Asset removed successfully.\n");
+                        break;
+                    case "3":
+                        accrueAllAssets();
+                        view.append("All assets accrued successfully.\n");
+                        break;
+                    case "4":
+                        double newPeriod = Double.parseDouble(view.getInput("Enter new period for all assets: "));
+                        changeAssetPeriods(newPeriod);
+                        view.append("Asset periods updated successfully.\n");
+                        break;
+                    case "5":
+                        promptFilterAssets();
+                        break;
+                    case "6":
+                        view.append("Exiting the Asset Management System. Goodbye!\n");
+                        return;
+                    default:
+                        view.append("Invalid choice. Please try again.\n");
+                }
+            } catch (Exception e) {
+                view.append("Error: " + e.getMessage() + "\n");
             }
         }
     }
@@ -114,12 +119,13 @@ public class AssetListController {
     }
 
     public void updateView() {
-        view.append("Current Assets:\n");
+        view.append("\nCurrent Assets:\n");
         if (model.length() == 0) {
             view.append("No assets available.\n\n");
             return;
         }
         view.append(model.toString()+ "\n");
+        view.append("Total Asset Value: " + model.getTotalAssetValue() + "\n\n");
     }
 
     public void promptAddAsset() {
