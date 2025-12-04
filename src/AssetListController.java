@@ -11,7 +11,9 @@ public class AssetListController {
     }
 
     public void start() {
-        view.append("Welcome to the Asset Management System!\n");
+        view.append("\n|=======================================|\n");
+        view.append("|Welcome to the Asset Management System!|\n");
+        view.append("|=======================================|\n\n");
         while (true) {
             updateView();
             String choice = view.getInput("Choose an option:\n" +
@@ -67,7 +69,11 @@ public class AssetListController {
 
     public void updateView() {
         view.append("Current Assets:\n");
-        view.append(model.toString());
+        if (model.countAssets() == 0) {
+            view.append("No assets available.\n\n");
+            return;
+        }
+        view.append(model.toString()+ "\n");
     }
 
     public void promptAddAsset() {

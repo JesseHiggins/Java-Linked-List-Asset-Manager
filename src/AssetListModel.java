@@ -34,7 +34,11 @@ public class AssetListModel {
 
     public void changeAssetPeriods(double newPeriod) {
         assetList.forEach(asset -> asset.setPeriod(newPeriod));
-    }    
+    }
+
+    public int countAssets() {
+        return assetList.count();
+    }
 
     @Override
     public String toString() {

@@ -59,8 +59,6 @@ public class Main {
         // assetList.accrueAllAssets();
         AssetListModel model = new AssetListModel();
         AssetListView view = new AssetListView(System.out, new InputStreamReader(System.in));
-        
-
 
         AssetListController controller = new AssetListController(model, view);
 
