@@ -1,4 +1,6 @@
 import java.io.Reader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Main {
@@ -55,11 +57,8 @@ public class Main {
         // System.out.println("\nAccruing all assets after 1 period...");
         // assetList.changeAssetPeriods(1);
         // assetList.accrueAllAssets();
-        // System.out.println(assetList);
-
         AssetListModel model = new AssetListModel();
-        AssetListView view = new AssetListView();
-        Scanner scanner = new Scanner(System.in);
+        AssetListView view = new AssetListView(System.out, new InputStreamReader(System.in));
         
 
 

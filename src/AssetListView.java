@@ -5,12 +5,12 @@ public class AssetListView {
     private final Appendable log;
     private final Scanner scanner;
 
-    public AssetListView(Appendable log, Scanner scanner){
+    public AssetListView(Appendable log, Readable scanner){
         if (log == null){
             throw new IllegalArgumentException("Appendable cannot be null");
         }
         this.log = log;
-        this.scanner = scanner;
+        this.scanner = new Scanner(scanner);
     }
 
     public void append(String s){
