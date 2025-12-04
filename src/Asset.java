@@ -48,5 +48,13 @@ public abstract class Asset implements Accrueable {
         this.period = period;
     }
 
+    public void setPrincipal(double principal) {
+        this.principal = principal;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
+    }
+
 
 }

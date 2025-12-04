@@ -36,7 +36,7 @@ public class AssetListModel {
     }
 
     public void changeAssetPeriods(double newPeriod) {
-        assetList.forEach(asset -> asset.setPeriod(newPeriod));
+        assetList.forEach(asset -> asset.setPeriod(asset.getPeriod() + newPeriod));
     }
 
     public int length() {
@@ -57,6 +57,22 @@ public class AssetListModel {
 
     public double getTotalAssetValue() {
         return assetList.fold(0.0, (acc, asset) -> acc + asset.getValue());
+    }
+
+    public void changeAssetName(int index, String newName) {
+        assetList.modifyNode(index, asset -> asset.setName(newName));
+    }
+
+    public void changeAssetPrincipal(int index, double newPrincipal) {
+        assetList.modifyNode(index, asset -> asset.setPrincipal(newPrincipal));
+    }
+
+    public void changeAssetRate(int index, double newRate) {
+        assetList.modifyNode(index, asset -> asset.setRate(newRate));
+    }
+
+    public void changeAssetPeriod(int index, double newPeriod) {
+        assetList.modifyNode(index, asset -> asset.setPeriod(newPeriod));
     }
 
     @Override

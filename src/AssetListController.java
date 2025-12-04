@@ -21,8 +21,8 @@ public class AssetListController {
                 String choice = view.getInput("Choose an option:\n" +
                         "1. Add Asset\n" +
                         "2. Remove Asset\n" +
-                        "3. Accrue All Assets\n" +
-                        "4. Change Asset Periods\n" +
+                        "3. Change Asset\n" +
+                        "4. Accrue One Year\n" +
                         "5. Filter Assets\n" +
                         "6. Exit\n" +
                         "Enter choice (1-6): ");
@@ -37,13 +37,11 @@ public class AssetListController {
                         view.append("Asset removed successfully.\n");
                         break;
                     case "3":
-                        accrueAllAssets();
-                        view.append("All assets accrued successfully.\n");
+                        promptChangeAsset();
                         break;
                     case "4":
-                        double newPeriod = Double.parseDouble(view.getInput("Enter new period for all assets: "));
-                        changeAssetPeriods(newPeriod);
-                        view.append("Asset periods updated successfully.\n");
+                        changeAssetPeriods(1);
+                        view.append("\n***All assets accrued successfully.***\n");
                         break;
                     case "5":
                         promptFilterAssets();
@@ -60,35 +58,35 @@ public class AssetListController {
         }
     }
 
-    public void addAsset(Asset asset) {
+    private void addAsset(Asset asset) {
         model.addAsset(asset);
     }
 
-    public void removeAsset(int index) {
+    private void removeAsset(int index) {
         model.removeAsset(index);
     }
 
-    public void accrueAllAssets() {
+    private void accrueAllAssets() {
         model.accrueAllAssets();
     }
 
-    public void changeAssetPeriods(double newPeriod) {
+    private void changeAssetPeriods(double newPeriod) {
         model.changeAssetPeriods(newPeriod);
     }
 
-    public void filterAssetsByType(assetType type) {
+    private void filterAssetsByType(assetType type) {
         model.filterAssetsByType(type);
     }
 
-    public void filterAssetsByName(String name) {
+    private void filterAssetsByName(String name) {
         model.filterAssetsByName(name);
     }
 
-    public void filterAssetsByValue(double minValue, double maxValue) {
+    private void filterAssetsByValue(double minValue, double maxValue) {
         model.filterAssetsByValue(minValue, maxValue);
     }
 
-    public void promptFilterAssets() {
+    private void promptFilterAssets() {
         view.append("Filter assets by:\n");
         view.append("1. Type\n");
         view.append("2. Name\n");
@@ -118,7 +116,7 @@ public class AssetListController {
         }
     }
 
-    public void updateView() {
+    private void updateView() {
         view.append("\nCurrent Assets:\n");
         if (model.length() == 0) {
             view.append("No assets available.\n\n");
@@ -128,7 +126,7 @@ public class AssetListController {
         view.append("Total Asset Value: " + model.getTotalAssetValue() + "\n\n");
     }
 
-    public void promptAddAsset() {
+    private void promptAddAsset() {
         view.append("What type of asset would you like to add?\n");
         view.append("1. Stock\n");
         view.append("2. Cash\n");
@@ -184,5 +182,56 @@ public class AssetListController {
         Asset newAsset = new Bond(name, rate, period, principal, faceValue, maturity);
         addAsset(newAsset);
         view.append("Bond added successfully.\n");
+    }
+
+    private void changeAssetName(int index, String newValue) {
+        model.changeAssetName(index, newValue);
+    }
+
+    private void changeAssetPrincipal(int index, double newValue) {
+        model.changeAssetPrincipal(index, newValue);
+    }
+
+    private void changeAssetRate(int index, double newValue) {
+        model.changeAssetRate(index, newValue);
+    }
+
+    private void changeAssetPeriod(int index, double newValue) {
+        model.changeAssetPeriods(newValue);
+    }
+
+    private void promptChangeAsset() {
+        int index = Integer.parseInt(view.getInput("Enter index of asset to change: ")) - 1;
+        view.append("What would you like to change?\n");
+        view.append("1. Name\n");
+        view.append("2. Principal\n");
+        view.append("3. Rate\n");
+        view.append("4. Period\n");
+
+        String choice = view.getInput("Enter choice (1-4): ");
+        switch (choice) {
+            case "1":
+                String newName = view.getInput("Enter new name: ");
+                changeAssetName(index, newName);
+                view.append("Asset name updated successfully.\n");
+                break;
+            case "2":
+                double newPrincipal = Double.parseDouble(view.getInput("Enter new principal: "));
+                changeAssetPrincipal(index, newPrincipal);
+                view.append("Asset principal updated successfully.\n");
+                break;
+            case "3":
+                double newRate = Double.parseDouble(view.getInput("Enter new rate: "));
+                changeAssetRate(index, newRate);
+                view.append("Asset rate updated successfully.\n");
+                break;
+            case "4":
+                double newPeriod = Double.parseDouble(view.getInput("Enter new period: "));
+                changeAssetPeriod(index, newPeriod);
+                view.append("Asset period updated successfully.\n");
+                break;
+            default:
+                view.append("Invalid choice. Please try again.\n");
+        }
     }
 }
