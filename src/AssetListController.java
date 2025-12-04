@@ -21,8 +21,9 @@ public class AssetListController {
                     "2. Remove Asset\n" +
                     "3. Accrue All Assets\n" +
                     "4. Change Asset Periods\n" +
-                    "5. Exit\n" +
-                    "Enter choice (1-5): ");
+                    "5. Filter Assets\n" +
+                    "6. Exit\n" +
+                    "Enter choice (1-6): ");
 
             switch (choice) {
                 case "1":
@@ -43,6 +44,9 @@ public class AssetListController {
                     view.append("Asset periods updated successfully.\n");
                     break;
                 case "5":
+                    promptFilterAssets();
+                    break;
+                case "6":
                     view.append("Exiting the Asset Management System. Goodbye!\n");
                     return;
                 default:
@@ -67,9 +71,51 @@ public class AssetListController {
         model.changeAssetPeriods(newPeriod);
     }
 
+    public void filterAssetsByType(assetType type) {
+        model.filterAssetsByType(type);
+    }
+
+    public void filterAssetsByName(String name) {
+        model.filterAssetsByName(name);
+    }
+
+    public void filterAssetsByValue(double minValue, double maxValue) {
+        model.filterAssetsByValue(minValue, maxValue);
+    }
+
+    public void promptFilterAssets() {
+        view.append("Filter assets by:\n");
+        view.append("1. Type\n");
+        view.append("2. Name\n");
+        view.append("3. Value Range\n");
+
+        String choice = view.getInput("Enter choice (1-3): ");
+        switch (choice) {
+            case "1":
+                String typeStr = view.getInput("Enter asset type (STOCK, CASH, BOND): ");
+                assetType type = assetType.valueOf(typeStr.toUpperCase());
+                filterAssetsByType(type);
+                view.append("Assets filtered by type successfully.\n");
+                break;
+            case "2":
+                String name = view.getInput("Enter asset name to filter by: ");
+                filterAssetsByName(name);
+                view.append("Assets filtered by name successfully.\n");
+                break;
+            case "3":
+                double minValue = Double.parseDouble(view.getInput("Enter minimum value: "));
+                double maxValue = Double.parseDouble(view.getInput("Enter maximum value: "));
+                filterAssetsByValue(minValue, maxValue);
+                view.append("Assets filtered by value range successfully.\n");
+                break;
+            default:
+                view.append("Invalid choice. Please try again.\n");
+        }
+    }
+
     public void updateView() {
         view.append("Current Assets:\n");
-        if (model.countAssets() == 0) {
+        if (model.length() == 0) {
             view.append("No assets available.\n\n");
             return;
         }

@@ -36,8 +36,20 @@ public class AssetListModel {
         assetList.forEach(asset -> asset.setPeriod(newPeriod));
     }
 
-    public int countAssets() {
+    public int length() {
         return assetList.count();
+    }
+
+    public void filterAssetsByType(assetType type) {
+        assetList = assetList.filter(asset -> asset.getType() == type);
+    }
+
+    public void filterAssetsByName(String name) {
+        assetList = assetList.filter(asset -> asset.getName().equals(name));
+    }
+
+    public void filterAssetsByValue(double minValue, double maxValue) {
+        assetList = assetList.filter(asset -> asset.getValue() >= minValue && asset.getValue() <= maxValue);
     }
 
     @Override
