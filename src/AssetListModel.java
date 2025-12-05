@@ -1,6 +1,6 @@
 /**
- * This `ToDoList` class uses a ListImpl object with nodes and tasks as data in nodes to implement a specific todolist.
- * It includes methods for constructors, get task, add task, remove tasks, change task variables, remove specific tasks, and tostring.
+ * This `AssetListModel` class uses a ListImpl object with nodes and asset as data in nodes to implement a specific asset model.
+ * It includes methods for constructors, get asset, add asset, remove asset, change asset variables, remove specific assets, and tostring.
  * </p>
  * @author Jesse Higgins
  * @version 1.0
@@ -75,68 +75,13 @@ public class AssetListModel {
         assetList.modifyNode(index, asset -> asset.setPeriod(newPeriod));
     }
 
+    public void changePeriod(int index, double period) {
+        assetList.modifyNode(index, asset -> asset.setPeriod(period));
+    }
+
     @Override
     public String toString() {
         return assetList.toStringIndex();
     }
 
-
-    // public void removeTaskId(int id) {toDoList.removeNodePredicate(task -> task.getId() == id);}
-
-//     public void removeTask(int index) {
-//         toDoList.removeNode(index);
-//     }
-
-//     public void removeAllTasks() {
-//         toDoList.removeAllNodes();
-//     }
-
-    public void changePeriod(int index, double period) {
-        assetList.modifyNode(index, asset -> asset.setPeriod(period));
-    }
-
-//     public void changePriority(int index, Priority priority) {
-//         toDoList.modifyNode(index, task -> task.setPriority(priority));
-//     }
-
-//     public void setCompleted(int index, boolean completed) {
-//         toDoList.modifyNode(index, task -> task.setCompleted(completed));
-//     }
-
-//     public int countTasks() {
-//         return toDoList.count();
-//     }
-
-//     public int countCompletedTasks() {
-//         return toDoList.countPredicate(task -> task.isCompleted().equals(true));
-//     }
-
-//     public int countExpiredTasks() {
-//         return toDoList.countPredicate(task -> task.isExpired().equals(true));
-//     }
-
-
-//    public String toStringPriority(Priority priority) {
-//        return toDoList.toStringPredicate(task -> task.getPriority().equals(priority));
-//    }
-
-//    public String toStringExpiredTasks() {
-//        return toDoList.toStringPredicate(task -> task.isExpired().equals(true));
-//    }
-
-//    public void removeCompletedTasks() {
-//        toDoList.removeNodePredicate(task -> task.isCompleted().equals(true));
-//    }
-
-//    public void removeExpiredTasks() {
-//         toDoList.removeNodePredicate(task -> task.isExpired().equals(true));
-//    }
-
-//    public void removePriorityTasks(Priority priority) {
-//         toDoList.removeNodePredicate(task -> task.getPriority().equals(priority));
-//    }
-
-//    public String toString() {
-//         return toDoList.toStringVertical();
-//    }
 }
