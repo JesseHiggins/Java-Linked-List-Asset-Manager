@@ -27,7 +27,7 @@ public class ListImpl<T> implements Iterable<T> {
         
     }
 
-    public void addNodeEnd(T data){
+    public void addNodeAtEnd(T data){
         if (head.getData() == null){
             head = new ContentNode<>(head, data);
         } else {
@@ -105,7 +105,7 @@ public class ListImpl<T> implements Iterable<T> {
         
         for (T item : this) {
             if (test.test(item)) {
-                filteredList.addNodeEnd(item);
+                filteredList.addNodeAtEnd(item);
             }
         }
         return filteredList;
@@ -123,7 +123,7 @@ public class ListImpl<T> implements Iterable<T> {
         ListImpl<R> result = new ListImpl<>();
 
         for (T t : this) {
-            result.addNodeEnd(f.apply(t));
+            result.addNodeAtEnd(f.apply(t));
         }
         return result;
     }
