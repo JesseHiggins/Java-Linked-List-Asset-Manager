@@ -32,7 +32,7 @@ public class AssetListController {
                         promptAddAsset();
                         break;
                     case "2":
-                        int indexToRemove = Integer.parseInt(view.getInput("Enter index of asset to remove: "));
+                        int indexToRemove = Integer.parseInt(view.getInput("Enter index of asset to remove: ")) - 1;
                         model.removeAsset(indexToRemove);
                         view.append("Asset removed successfully.\n");
                         break;
